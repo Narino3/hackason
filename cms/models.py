@@ -26,3 +26,11 @@ class Impression(models.Model):
         return self.comment
 
 
+
+class Recruit(models.Model):
+    """感想"""
+    book = models.ForeignKey(Book, verbose_name='書籍', related_name='impressions', on_delete=models.CASCADE)
+    comment = models.TextField('コメント', blank=True)
+
+    def __str__(self):
+        return self.comment
