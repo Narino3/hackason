@@ -45,7 +45,6 @@ class Recruit(models.Model):
     comment = models.CharField('コメント',max_length=1000)
     finish_flag = models.BooleanField('マッチング前後')
     password = models.CharField('パスワード',max_length=40)
-    entry_ID = models.IntegerField('応募ID')
 
     def __str__(self):
         return self.comment
