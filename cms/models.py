@@ -37,11 +37,10 @@ class Recruit(models.Model):
     person_number = models.IntegerField('人数', blank=True, default=1)
     work_start_time = models.TimeField('開始時刻')
     work_last_time = models.TimeField('終了時刻')
-    comment = models.CharField('コメント')
+    comment = models.CharField('コメント',max_length=1000)
     finish_flag = models.BooleanField('マッチング前後')
-    password = models.CharField('パスワード')
+    password = models.CharField('パスワード',max_length=400)
     entry_ID = models.IntegerField('応募ID')
 
     def __str__(self):
         return self.comment
-
