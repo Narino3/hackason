@@ -1,0 +1,16 @@
+{% extends "./base.html" %}
+
+{% block main %}
+
+<h2>tag設定</h2>
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="tag登録">
+</form>
+<br><br>
+<div>
+    <a href="../">閉じる</a>
+</div>
+
+{% endblock%}

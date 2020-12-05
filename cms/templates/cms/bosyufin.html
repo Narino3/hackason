@@ -1,0 +1,19 @@
+{% extends "./base.html" %}
+
+{% block main %}
+
+<h2>募集完了！</h2>
+
+<div>
+{% for book in object_list %}
+    {% if forloop.last %}
+    <li>募集ID:{{ book.recruit_ID }}</li>
+    <li>登録パスワード:{{ book.password }}</li>
+    {% endif %}
+{% endfor %}
+</div>
+
+<div>
+    <a href="../">閉じる</a>
+</div>
+{% endblock%}

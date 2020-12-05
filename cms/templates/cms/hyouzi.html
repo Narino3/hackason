@@ -1,0 +1,14 @@
+{% extends "./base.html" %}
+{% block main %}
+
+<h2>表示テスト</h2>
+<ol>
+    {% for book in object_list %}
+    <li>タイム：{{ book.post_time}}、タイトル:{{ book.recruit_title }}、店ID：{{ book.shop_ID }}、reID:{{ book.recruit_ID }}、終了時間:{{ book.finish_time }}</li>
+    {% endfor %}
+</ol>
+<div>
+    <a href="../">閉じる</a>
+</div>
+
+{% endblock%}
