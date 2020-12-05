@@ -30,14 +30,17 @@ class Impression(models.Model):
 #募集が親、応募が子
 class Recruit(models.Model):
     """募集"""
-    recruit_ID = models.IntegerField('募集ID', blank=True, default=0)
-    shop_ID = models.IntegerField('店舗ID', blank=True, default=0)
-    post_time = models.TimeField('投稿時刻')
-    finish_time = models.TimeField('募集締め切り時刻')
-    person_type = models.IntegerField('職種', blank=True, default=0)
+    #recruit_IDは自動取得
+    recruit_ID = models.AutoField('募集ID', blank=True,primary_key=True)
+    shop_ID = models.IntegerField('店舗ID')
+    #TimeField⇒AutoFieldに変更
+    #投稿時刻自動取得
+    post_time = models.DateTimeField('投稿時刻',auto_now=True)
+    finish_time = models.DateTimeField('募集締め切り時刻')
+    person_type = models.CharField('職種',max_length=300)
     person_number = models.IntegerField('人数', blank=True, default=1)
-    work_start_time = models.TimeField('開始時刻')
-    work_last_time = models.TimeField('終了時刻')
+    work_start_time = models.DateTimeField('開始時刻')
+    work_last_time = models.DateTimeField('終了時刻')
     comment = models.CharField('コメント',max_length=1000)
     finish_flag = models.BooleanField('マッチング前後')
     password = models.CharField('パスワード',max_length=400)
@@ -50,15 +53,17 @@ class Recruit(models.Model):
 class Entry(models.Model):
     """応募"""
     recruit = models.ForeignKey(Recruit,verbose_name='応募',related_name='entry', on_delete=models.CASCADE)
-    entry_ID = models.IntegerField('応募ID', blank=True, default=0)
-    shop_ID = models.IntegerField('店舗ID', blank=True, default=0)
-    post_time = models.TimeField('投稿時刻')
-    person_type = models.IntegerField('職種', blank=True, default=0)
+    #entry_IDは自動取得
+    entry_ID = models.AutoField('応募ID',primary_key=True)
+    shop_ID = models.IntegerField('店舗ID', blank=True)
+    #TimeField⇒AutoFieldに変更
+    #投稿時刻自動取得
+    post_time = models.DateTimeField('投稿時刻',auto_now=True)
+    person_type = models.CharField('職種',max_length=300)
     person_number = models.IntegerField('人数', blank=True, default=1)
     comment = models.CharField('コメント',max_length=1000)
     finish_flag = models.BooleanField('マッチング判定')
 
     def __str__(self):
         return self.comment
-
 
