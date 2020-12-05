@@ -28,9 +28,21 @@ class Impression(models.Model):
 
 
 class Recruit(models.Model):
-    """感想"""
-    book = models.ForeignKey(Book, verbose_name='書籍', related_name='impressions', on_delete=models.CASCADE)
-    comment = models.TextField('コメント', blank=True)
+    """募集"""
+    recruit_ID = models.IntegerField('募集ID', blank=True, default=0)
+    shop_ID = models.IntegerField('店舗ID', blank=True, default=0)
+    post_time = models.TimeField('投稿時刻')
+    finish_time = models.TimeField('募集締め切り時刻')
+    person_type = models.IntegerField('職種', blank=True, default=0)
+    person_number = models.IntegerField('人数', blank=True, default=1)
+    work_start_time = models.TimeField('開始時刻')
+    work_last_time = models.TimeField('終了時刻')
+    comment = models.CharField('コメント')
+    finish_flag = models.BooleanField('マッチング前後')
+    password = models.CharField('パスワード')
+    entry_ID = models.IntegerField('応募ID')
 
     def __str__(self):
         return self.comment
+
+
