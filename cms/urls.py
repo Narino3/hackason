@@ -1,11 +1,11 @@
 from django.urls import path
-from . import views
+from . import views1, views2, views3, views4
 
-from .views import IndexView, AboutView
 
 #ユーザがトップページにアクセスしたらIndexViewを表示
 urlpatterns = [
-    path('', IndexView.as_view()),
-    path('about/', AboutView.as_view()),
-    #path('', views.MemberList.as_view(), name='book'),
+    path('', views1.IndexView.as_view(), name='book'),
+    path('oubo/', views2.OuboView.as_view(), name='book'),
+    path('bosyu/', views3.BosyuView.as_view(), name='book'),
+    path('zibun/', views4.ZibunView.as_view(), name='book'),
 ]
