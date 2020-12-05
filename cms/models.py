@@ -35,6 +35,7 @@ class Recruit(models.Model):
     shop_ID = models.IntegerField('店舗ID')
     #TimeField⇒AutoFieldに変更
     #投稿時刻自動取得
+    recruit_title = models.CharField('募集タイトル',max_length=500)
     post_time = models.DateTimeField('投稿時刻',auto_now=True)
     finish_time = models.DateTimeField('募集締め切り時刻')
     person_type = models.CharField('職種',max_length=300)
@@ -43,7 +44,7 @@ class Recruit(models.Model):
     work_last_time = models.DateTimeField('終了時刻')
     comment = models.CharField('コメント',max_length=1000)
     finish_flag = models.BooleanField('マッチング前後')
-    password = models.CharField('パスワード',max_length=400)
+    password = models.CharField('パスワード',max_length=40)
     entry_ID = models.IntegerField('応募ID')
 
     def __str__(self):
