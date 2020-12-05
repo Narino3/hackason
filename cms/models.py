@@ -35,7 +35,7 @@ class Recruit(models.Model):
     shop_ID = models.IntegerField('店舗ID')
     #TimeField⇒AutoFieldに変更
     #投稿時刻自動取得
-    recruit_title = models.CharField('募集タイトル',max_length=500)
+    recruit_title = models.CharField('募集タイトル',max_length=500,default='NOT TITLE')
     post_time = models.DateTimeField('投稿時刻',auto_now=True)
     finish_time = models.DateTimeField('募集締め切り時刻')
     person_type = models.CharField('職種',max_length=300)
