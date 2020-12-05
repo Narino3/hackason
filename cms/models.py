@@ -27,6 +27,7 @@ class Impression(models.Model):
 
 
 
+#募集が親、応募が子
 class Recruit(models.Model):
     """募集"""
     recruit_ID = models.IntegerField('募集ID', blank=True, default=0)
@@ -44,3 +45,20 @@ class Recruit(models.Model):
 
     def __str__(self):
         return self.comment
+
+
+class Entry(models.Model):
+    """応募"""
+    recruit = models.ForeignKey(Recruit,verbose_name='応募',related_name='entry', on_delete=models.CASCADE)
+    entry_ID = models.IntegerField('応募ID', blank=True, default=0)
+    shop_ID = models.IntegerField('店舗ID', blank=True, default=0)
+    post_time = models.TimeField('投稿時刻')
+    person_type = models.IntegerField('職種', blank=True, default=0)
+    person_number = models.IntegerField('人数', blank=True, default=1)
+    comment = models.CharField('コメント',max_length=1000)
+    finish_flag = models.BooleanField('マッチング判定')
+
+    def __str__(self):
+        return self.comment
+
+
