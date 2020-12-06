@@ -2,28 +2,33 @@
 
 {% block main %}
 
-    <h2>匿名 様</h2>
-    {% if not data %}
-    <p>まだ応募がありません</p>
+<h2>匿名 様</h2>
+<h4>募集ID: {{recruit.recruit_ID}}</h4>
+{% if not entries %}
+<p>まだ応募がありません</p>
 
-    {% elif page_type == 0 %}
-    <p><font color="red">※ まだマッチングが完了していません</font></p>
-    <h2>応募一覧</h2>
+{% elif not recruit.finish_flag %}
+<p><font color="red">※ まだマッチングが完了していません</font></p>
+<h2>応募一覧</h2>
 
 
-    {% for itr in data %}
-        <li>{{itr.entry_ID}}: {{itr.comment}}
-            <ul>投稿時刻: {{itr.post_time}}</ul>
-            <ul>職種: {{itr.person_type}}</ul>
-            <ul>人数: {{itr.person_number}}</ul></li>
-    {% endfor %}
+{% for itr in entries %}
+    <li>{{itr.entry_ID}}: {{itr.comment}}
+        <ul>投稿時刻: {{itr.post_time}}</ul>
+        <ul>職種: {{itr.person_type}}</ul>
+        <ul>人数: {{itr.person_number}}</ul></li>
+{% endfor %}
 
-    <input type="button" value="マッチングを登録する">
+<form action="/zibun/" method="post">
+    {% csrf_token %}
+    自分の募集ID: <input type="text" id="zibun_recruit_ID" value={{recruit.recruit_ID}}><br/>
+    選択した応募ID: <input type="text" id="zibun_entry_ID" placeholder="応募ID入力"><br/>
+    <input type="submit" value="マッチングを登録する">
+</form>
 
-    {% elif page_type == 1 %}
-    <h2>応募が完了しました</h2>
-    <p>マッチング応募ID: {{data.entry_ID}}</p>
-    {% else %}
-    {% endif %}
+{% else %}
+<h2>マッチングが完了しました</h2>
+<p>マッチングした応募ID: {{matching_entries.0.entry_ID}}</p>
+{% endif %}
 
 {% endblock%}

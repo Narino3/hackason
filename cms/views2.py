@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, ListView, DetailView, CreateView #汎用ビューら
-from .models import Book, Recruit, Entry # DB
+from .models import *
 from django.shortcuts import render
 
 from .forms import OuboForm
