@@ -7,5 +7,5 @@ urlpatterns = [
     path('', views1.IndexView.as_view(), name='book'),
     path('oubo/', views2.OuboView.as_view(), name='book'),
     path('bosyu/', views3.BosyuView.as_view(), name='book'),
-    path('zibun/', views4.ZibunView.as_view(), name='book'),
+    path('zibun/', views4.ZibunView, name='zibun'),
 ]

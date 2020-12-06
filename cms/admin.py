@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from cms.models import Book, Impression
+from cms.models import Book, Impression, Recruit, Entry
 
 
 
@@ -21,3 +21,6 @@ class ImpressionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Impression, ImpressionAdmin)
+
+admin.site.register(Recruit)
+admin.site.register(Entry)
