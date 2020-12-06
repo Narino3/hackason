@@ -12,15 +12,14 @@
 
 <body>
     <h2>匿名 様</h2>
-    {% if page_type == 0 %}
-    {% if data %}
-    {% if not data.0.finish_flag %}
-    <p><font color="red">※ まだマッチングが完了していません</font></p>
-    {% endif %}
+    {% if not data %}
+    <p>まだ応募がありません</p>
 
+    {% elif page_type == 0 %}
+    <p><font color="red">※ まだマッチングが完了していません</font></p>
     <h2>応募一覧</h2>
 
-    <form>
+
     {% for itr in data %}
         <li>{{itr.entry_ID}}: {{itr.comment}}
             <ul>投稿時刻: {{itr.post_time}}</ul>
@@ -29,11 +28,6 @@
     {% endfor %}
 
     <input type="button" value="マッチングを登録する">
-    </form>
-
-    {% else %}
-    <p>まだ応募がありません</p>
-    {% endif %}
 
     {% elif page_type == 1 %}
     <h2>応募が完了しました</h2>

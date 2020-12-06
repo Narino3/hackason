@@ -11,7 +11,7 @@ from .models import Book, Recruit, Entry # DB
 #class MemberList(ListView):
 #    model = Entry
 
-def ZibunView(request, arg_recruit_ID):
+def ZibunView(request):
     data = Entry.objects.all()
     params = {'page_type': 0, 'data': data}
     return render(request, 'cms/zibun.html', params)
