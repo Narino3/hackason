@@ -7,10 +7,11 @@
 <div>
 {% for book in object_list %}
     {% if forloop.last %}
-    <li>募集ID:{{ book.recruit_ID }}</li>
-    <li>登録パスワード:{{ book.password }}</li>
+    <li>募集ID：{{ book.recruit_ID }}</li>
+    <li>登録パスワード：{{ book.password }}</li>
     {% endif %}
 {% endfor %}
+<p>募集IDとパスワードは、今回の募集への応募を確認するために必要となります</p>
 </div>
 
 <div>

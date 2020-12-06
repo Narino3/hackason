@@ -16,6 +16,10 @@ class ModelList(ListView):
     model = Recruit
     #model = Book
 
+class ModelEList(ListView):
+    template_name = 'cms/hyouziE.html' #
+    model = Entry
+
 class BosyuView(CreateView):
     template_name = 'cms/bosyu.html' #
     model = Recruit

@@ -14,12 +14,6 @@ widget_textinput = forms.TextInput(
         "class": "form-control"
     }
 )
-comment = forms.CharField(
-    widget=widget_textarea
-)
-recruit_title = forms.CharField(
-    widget=widget_textinput, label="募集タイトル"
-)
 
 # 時間をカレンダーから入力
 class BosyuForm(ModelForm):
@@ -38,6 +32,12 @@ class BosyuForm(ModelForm):
         widget=forms.DateTimeInput(attrs={"type": "datetime-local", "value": timezone.datetime.now().strftime('%Y-%m-%dT%H:%M')}),
         input_formats=['%Y-%m-%dT%H:%M']
     )
+    comment = forms.CharField(
+        widget=widget_textarea
+    )
+    recruit_title = forms.CharField(
+        widget=widget_textinput, label="募集タイトル"
+    )
 
     """書籍のフォーム"""
     class Meta:
@@ -48,3 +48,17 @@ class BosyuForm(ModelForm):
             'person_type': forms.CheckboxSelectMultiple
         }
 
+
+
+class OuboForm(ModelForm):
+    comment = forms.CharField(
+        widget=widget_textarea
+    )
+
+    class Meta:
+        model = Entry
+        fields = ['recruit_ID', 'shop_ID', 'person_type', 'person_number', 'comment']
+        #fields = '__all__'
+        widgets = {
+            'person_type': forms.CheckboxSelectMultiple
+        }

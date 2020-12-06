@@ -1,0 +1,29 @@
+{% extends "./base.html" %}
+
+{% block main %}
+
+    <h2>匿名 様</h2>
+    {% if not data %}
+    <p>まだ応募がありません</p>
+
+    {% elif page_type == 0 %}
+    <p><font color="red">※ まだマッチングが完了していません</font></p>
+    <h2>応募一覧</h2>
+
+
+    {% for itr in data %}
+        <li>{{itr.entry_ID}}: {{itr.comment}}
+            <ul>投稿時刻: {{itr.post_time}}</ul>
+            <ul>職種: {{itr.person_type}}</ul>
+            <ul>人数: {{itr.person_number}}</ul></li>
+    {% endfor %}
+
+    <input type="button" value="マッチングを登録する">
+
+    {% elif page_type == 1 %}
+    <h2>応募が完了しました</h2>
+    <p>マッチング応募ID: {{data.entry_ID}}</p>
+    {% else %}
+    {% endif %}
+
+{% endblock%}

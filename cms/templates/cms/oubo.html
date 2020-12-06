@@ -1,0 +1,45 @@
+{% extends "./base.html" %}
+{% load humanize %}
+
+{% block main %}
+
+<title>募集確認画面</title>
+<h1>応募中の案件の確認</h1>
+
+<ul type="square">
+    {% for book in object_list %}
+        {% if book == Entry.entry_ID %}
+            <li>募集ID:{{Entry.entry_ID}}</li>
+            <li>店舗ID:{{Entry.shop_ID}}</li>
+            <li>投稿日時:{{Entry.post_time}}</li>
+            <li>職種:{{Entry.person_type}}</li>
+            <li>人数:{{Entry.person_number}}</li>
+            <li>コメント:{{Entry.comment}}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+<h2>人材応募フォーム</h2>
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <table>
+        <tr>
+        <td>
+            <div style="text-align: center;">
+                <input type="submit" value="応募する！">
+            </div>
+        </td>
+        <td>    </td>
+        <td>
+            <div style="text-align: center;">
+            <a href="../" class="btn">トップページへ戻る</a>
+            </div>
+        </td>
+        </tr>
+        </table>
+</form>
+
+
+
+{% endblock%}

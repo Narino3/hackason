@@ -2,17 +2,32 @@
 {% load static %}
 
 {% block main %}
-<h1>ホーム</h1>
-{% if username == "自分" %}
-<h2>自分です</h2>
-{% elif username %}
-<h2>{{ username }}さんようこそ！</h2>
-{% else %}
-<h2>匿名さんようこそ！</h2>
-{% endif %}
-<div>
-    <a href="bosyu/">募集</a><br>
-    <a href="hyouzi/">表示</a>
+
+<div class="button-list" style="width: 100%; height:400px; background-image: linear-gradient(rgba(250, 250, 250, 0.5), rgba(200, 200, 200, 0.1)),url({% static 'shop.jpg' %}); background-size:cover;width: 100%;">
+    <a href="/bosyu">
+    <div class="recruit" style="width: 45%; border: 1px solid; padding:4% 0%; margin: 10% 2%;
+    text-align: center; background-color:rgba(255, 224, 224, 0.7); font-size: 24px; float: right; vertical-align: middle;">
+        募集をかける
+    </div></a>
+    <a href="/oubo">
+    <div class="apply" style="width: 45%; border:1px solid ; padding:4% 0%; margin-top: 10%;text-align: center; background-color:rgba(224, 255, 255, 0.7); font-size: 24px; float: left; vertical-align: middle;">
+        紹介をする
+    </div>
+    </a>
 </div>
+{% for rec in data %}
+<div class="recruit_list" style="border: 1px solid; margin:3% 3%; padding-left: 3%; width: 55%; border-radius: 10px; background-color: #f5f5f5;">
+    <a href="#" style="text-decoration: none; color: #0099cc"><h2>{{ rec.recruit_title }}</h2></a>
+    <div class="post_time" style="font-size: 12px; text-align: right; padding-right: 5%;">投稿日時：{{ rec.post_time }}</div>
+    <div class="finish_time" style="font-size: 12px; text-align: right; padding-right: 5%;">終了日時：{{ rec.finish_time }}</div>
+    <div class="recruit_id" style="font-size: 12px; text-align: right; padding-right: 5%;">募集ID：{{ rec.recruit_ID }}</div>
+</div>
+{% endfor %}
+<br>
+<a href="/zibun">
+<div class="my-recruit" style="font-size: 28px; background-color:#b3ffb3; height: ; padding: 2% 2%; text-align: center;">
+    自分が応募した案件一覧
+</div>
+</a>
 {% endblock%}
 
