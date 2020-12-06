@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from cms.models import Book, Impression
+from cms.models import Book, Impression, Recruit,Entry
 
 
 
@@ -21,3 +21,11 @@ class ImpressionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Impression, ImpressionAdmin)
+
+
+class EntryAdmin(admin.ModelAdmin):
+    list_display = ('entry_ID', 'shop_ID', 'post_time', 'person_type', 'person_number', 'comment', 'finish_flag',)
+    list_display_links =('entry_ID', 'shop_ID', 'post_time', 'person_type', 'person_number', 'comment', 'finish_flag',)
+    
+admin.site.register(Entry, EntryAdmin)
+

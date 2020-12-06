@@ -8,4 +8,6 @@ urlpatterns = [
     path('oubo/', views2.OuboView.as_view(), name='book'),
     path('bosyu/', views3.BosyuView.as_view(), name='book'),
     path('zibun/', views4.ZibunView.as_view(), name='book'),
+    path('oubofin/', views2.OuboFinView.as_view(), name='book'),
+    path('Top/', views2.TopView.as_view(), name='book'),
 ]
