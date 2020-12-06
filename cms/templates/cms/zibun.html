@@ -11,15 +11,20 @@
 </head>
 
 <body>
-    <h2>匿名 様</h2>
+    <h2>{{recruit.recruit_ID}} 様</h2>
     <h4>募集ID: {{recruit.recruit_ID}}</h4>
+    {% if page_type == 1 %}
+    <p>page1</p>
+    {% else %}
+    <p>page0</p>
+    {% endif %}
+    
     {% if not entries %}
     <p>まだ応募がありません</p>
 
     {% elif not recruit.finish_flag %}
     <p><font color="red">※ まだマッチングが完了していません</font></p>
     <h2>応募一覧</h2>
-
 
     {% for itr in entries %}
         <li>{{itr.entry_ID}}: {{itr.comment}}
