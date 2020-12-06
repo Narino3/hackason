@@ -12,23 +12,18 @@ from .models import Book, Recruit, Entry # DB
 #class MemberList(ListView):
 #    model = Entry
 
-class EntryListForm(forms.ModelForm):
-    class Meta:
-        model = Entry
-        fields = ('entry_ID',)
-        labels = {
-            'entry_ID': 'マッチングID',
-        }
-
 def ZibunView(request):
     #data = Entry.objects.all()
     arg_recruit_ID = 1
     recruit = Recruit.objects.get(recruit_ID=arg_recruit_ID)
-    entries = recruit.entry.all().order_by('entry_ID')
-    params = {'page_type': 0, 'recruit': recruit, 'entries': entries}
+    entries = Entry.objects.filter(recruit_ID=arg_recruit_ID)
+    #entries = recruit.entry.all().order_by('entry_ID')
+    matching_entries = entries.filter(finish_flag=True)
+    matching_ID = matching_entries[0].entry_ID
+    params = {'page_type': 0, 'recruit': recruit, 'entries': entries, 'matching_entries': matching_entries}
     return render(request, 'cms/zibun.html', params)
 
-def ZibunRegistration(request, arg_recruit_ID, arg_entry_ID):
+def post(request, arg_recruit_ID, arg_entry_ID):
     arg_recruit_ID = request.POST('zibun_recruit_ID')
     arg_entry_ID = request.POST('zibun_entry_ID')
     recruit = Recruit.objects.get(recruit_ID=arg_recruit_ID)
